@@ -47,7 +47,7 @@ public class PayByte implements IPayByte
     {
         if (TextUtils.isEmpty(payment.getMerchantApiKey()) || payment.getAmount() <= 0 || TextUtils.isEmpty(payment.getCoin()))
         {
-            throw new IllegalArgumentException("Invalid merchant address or amount values");
+            throw new IllegalArgumentException("Invalid merchant api key, amount values or selected coin.");
         }
 
         Hashtable<String,String> params = new Hashtable<>();
