@@ -23,7 +23,7 @@ The paymentResponse will contain the JSONObject representation of the payment re
 
 ## Get a payment data
 
-Simply provide the payment address to retrieve all data related to a transaction.
+Simply provide the payment identifier to retrieve all data related to a transaction.
 
 ```csharp
 var payByte = new PayByte(true);
