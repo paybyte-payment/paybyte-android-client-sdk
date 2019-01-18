@@ -20,7 +20,7 @@ public class PayByteTests
         Payment payment = new Payment();
         payment.setAmount(0.0332f);
         payment.setCoin("BTC");
-        payment.setMerchApiKey("[insert your API Key]");
+        payment.setMerchantApiKey("[insert your API Key]");
 
         try
         {
@@ -47,7 +47,7 @@ public class PayByteTests
         Payment payment = new Payment();
         payment.setAmount(0.0332f);
         payment.setCoin("BTC");
-        payment.setMerchApiKey("[insert your API Key]");
+        payment.setMerchantApiKey("[insert your API Key]");
 
         try
         {
