@@ -14,7 +14,7 @@ payment.setMerchApiKey("[insert your API Key]");
 var paymentResponse = payByte.createPayment(payment);
 ```
 
-The paymentResponse will contain the JSON representation of the payment response. 
+The paymentResponse will contain the JSONObject representation of the payment response. 
 
 ## Get a payment data
 
@@ -26,7 +26,7 @@ var paymentId = "cf565888-28f5-430e-85af-b34b945ce20f";
 JSONObject paymentStatus = payByte.GetPayment(paymentId);
 ```
 
-The SDK will return a JObject representation of the transaction data.
+The SDK will return a JSONObject representation of the transaction data.
 
 ## Get rates
 
@@ -36,4 +36,6 @@ Get the exchange rates of all supported crypto currencies against the provided c
 var payByte = new PayByte(true); 
 var rates = payByte.getRate("GBP");
 ```
+
+The SDK will return a JSONObject representation of exchange rate data against GBP fiat.
 
