@@ -6,7 +6,6 @@ allowing the developers to focus on the actual purchasing flow rather than on th
 ## Create a new payment
 
 ```csharp
-var payByte = new PayByte(true);
 PayByte paybyte = new PayByte(true);
 Payment payment = new Payment();
 payment.setAmount(0.0332f);
