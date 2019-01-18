@@ -1,4 +1,9 @@
-# Getting started
+<p>
+  <img src="https://paybyte.io/Content/images/paybyte_logo_2.png" height="80" title="PayByte Logo">
+</p>
+
+# PayByte Android SDK
+
 The Android SDK allows you to accept Crypto payments from your Java Android app using the PayByte REST API.
 The SDK has been designed to act as a wrapper for all the main PayByte functionalities, 
 allowing the developers to focus on the actual purchasing flow rather than on the API's implementation details.
