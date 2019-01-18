@@ -15,7 +15,7 @@ PayByte paybyte = new PayByte(true);
 Payment payment = new Payment();
 payment.setAmount(0.0332f);
 payment.setCoin("BTC");
-payment.setMerchApiKey("[insert your API Key]");
+payment.setMerchantApiKey("[insert your API Key]");
 var paymentResponse = payByte.createPayment(payment);
 ```
 
