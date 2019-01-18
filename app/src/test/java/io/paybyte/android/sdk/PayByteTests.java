@@ -1,14 +1,10 @@
 package io.paybyte.android.sdk;
 
 import android.text.TextUtils;
-
 import io.paybyte.android.sdk.models.Payment;
-
 import junit.framework.Assert;
-
 import org.json.JSONObject;
 import org.junit.Test;
-
 import java.math.BigDecimal;
 
 public class PayByteTests
@@ -30,7 +26,6 @@ public class PayByteTests
         {
             JSONObject resp = sgg.CreatePayment(payment);
 
-            Assert.assertEquals(resp.getJSONObject("transaction").getString("merchant-address"), payment.getMerchAddress());
             Assert.assertEquals(resp.getJSONObject("transaction").getDouble("amount"), payment.getAmount());
             Assert.assertTrue(!TextUtils.isEmpty(resp.getJSONObject("transaction").getString("payment-address")));
             Assert.assertTrue(!TextUtils.isEmpty(resp.getString("error")));
