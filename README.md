@@ -23,7 +23,7 @@ Simply provide the payment address to retrieve all data related to a transaction
 ```csharp
 var payByte = new PayByte(true);
 var paymentId = "cf565888-28f5-430e-85af-b34b945ce20f";
-JSONObject paymentStatus = sgg.GetPayment(paymentId);
+JSONObject paymentStatus = payByte.GetPayment(paymentId);
 ```
 
 The SDK will return a JObject representation of the transaction data.
