@@ -75,11 +75,11 @@ public class PayByteTests
     @Test
     public void Test_GetRate_Success()
     {
-        SetGetGo sgg = new SetGetGo(true);
+        PayByte paybyte = new PayByte(true);
 
         try
         {
-            JSONObject resp = sgg.GetRate("GBP");
+            JSONObject resp = paybyte.GetRate("GBP");
 
             Assert.assertEquals(resp.getJSONObject("rate").getString("name"), "GBP");
             Assert.assertTrue(!TextUtils.isEmpty(resp.getString("error")));
