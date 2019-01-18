@@ -1,8 +1,8 @@
-package com.setgetgo.android.sdk;
+package io.paybyte.android.sdk;
 
 import android.text.TextUtils;
 
-import com.setgetgo.android.sdk.Models.Payment;
+import io.paybyte.android.sdk.models.Payment;
 
 import junit.framework.Assert;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class SetGetGoTests
+public class PayByteTests
 {
     /**
      * Test to ensure that the create payment completes successfully.
@@ -19,11 +19,12 @@ public class SetGetGoTests
     @Test
     public void Test_CreatePayment_Success()
     {
-        SetGetGo sgg = new SetGetGo(true);
+        PayByte paybyte = new PayByte(true);
 
         Payment payment = new Payment();
         payment.setAmount(0.0332f);
-        payment.setMerchAddress("n1DUF2TJ3iq2mdhLqR4HPgmKrtEfo9ZJeE");
+        payment.setCoin("BTC");
+        payment.setMerchApiKey("[insert your API Key]");
 
         try
         {
@@ -46,11 +47,12 @@ public class SetGetGoTests
     @Test
     public void Test_GetPayment_Success()
     {
-        SetGetGo sgg = new SetGetGo(true);
+        PayByte paybyte = new PayByte(true);
 
         Payment payment = new Payment();
-        payment.setAmount(0.0332);
-        payment.setMerchAddress("n1DUF2TJ3iq2mdhLqR4HPgmKrtEfo9ZJeE");
+        payment.setAmount(0.0332f);
+        payment.setCoin("BTC");
+        payment.setMerchApiKey("[insert your API Key]");
 
         try
         {
@@ -58,11 +60,10 @@ public class SetGetGoTests
             JSONObject resp = sgg.CreatePayment(payment);
 
             // test the get payment against the transaction just created.
-            JSONObject paymentStatus = sgg.GetPayment(resp.getJSONObject("transaction").getString("payment-address"));
+            JSONObject paymentStatus = sgg.GetPayment(resp.getJSONObject("transaction").getString("payment-id"));
 
             double amountValue = BigDecimal.valueOf(paymentStatus.getJSONObject("transaction").getDouble("amount")).doubleValue();
 
-            Assert.assertEquals(paymentStatus.getJSONObject("transaction").getString("merchant-address"), payment.getMerchAddress());
             Assert.assertEquals(amountValue, payment.getAmount());
             Assert.assertTrue(!TextUtils.isEmpty(paymentStatus.getJSONObject("transaction").getString("payment-address")));
             Assert.assertTrue(!TextUtils.isEmpty(paymentStatus.getString("error")));

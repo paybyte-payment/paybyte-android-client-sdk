@@ -1,10 +1,10 @@
-package com.setgetgo.android.sdk;
+package io.paybyte.android.sdk;
 
-import com.setgetgo.android.sdk.Models.Payment;
+import io.paybyte.android.sdk.models.Payment;
 
 import org.json.JSONObject;
 
-public interface ISetGetGo
+public interface IPayByte
 {
     /**
      * @param payment The payment data.
@@ -13,10 +13,10 @@ public interface ISetGetGo
     JSONObject CreatePayment(Payment payment) throws Exception;
 
     /**
-     * @param paymentAddress The payment data.
+     * @param paymentId The payment identifier.
      * @return The JSON representation of the payment status.
      */
-    JSONObject GetPayment(String paymentAddress) throws Exception;
+    JSONObject GetPayment(String paymentId) throws Exception;
 
     /**
      * @param currencyCode The currency code.

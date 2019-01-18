@@ -1,7 +1,7 @@
-package com.setgetgo.android.sdk;
+package io.paybyte.android.sdk;
 
 import android.text.TextUtils;
-import com.setgetgo.android.sdk.Models.Payment;
+import io.paybyte.android.sdk.models.Payment;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.Hashtable;
 /**
  * Wrapper class which exposes the core functionality of the SetGetGo REST API.
  */
-public class SetGetGo implements ISetGetGo
+public class PayByte implements IPayByte
 {
     /**
      * True to select te testnet network, False otherwise.
@@ -22,19 +22,19 @@ public class SetGetGo implements ISetGetGo
     private boolean isTestnet;
 
     /**
-     * Initializes a new instance of the SetGetGo class.
+     * Initializes a new instance of the PayByte class.
      *
      * @param isTestnet
      */
-    public SetGetGo(boolean isTestnet)
+    public PayByte(boolean isTestnet)
     {
         this.isTestnet = isTestnet;
     }
 
     /**
-     * The SetGetGo base URL.
+     * The PayByte base URL.
      */
-    private String baseUrl = "https://setgetgo.com/api";
+    private String baseUrl = "https://paybyte.io/api";
 
     /**
      * Creates a new payment.
@@ -45,19 +45,25 @@ public class SetGetGo implements ISetGetGo
     @Override
     public JSONObject CreatePayment(Payment payment) throws Exception
     {
-        if (TextUtils.isEmpty(payment.getMerchAddress()) || payment.getAmount() <= 0)
+        if (TextUtils.isEmpty(payment.getMerchantApiKey()) || payment.getAmount() <= 0 || TextUtils.isEmpty(payment.getCoin()))
         {
             throw new IllegalArgumentException("Invalid merchant address or amount values");
         }
 
         Hashtable<String,String> params = new Hashtable<>();
         params.put("amount", String.valueOf(payment.getAmount()));
-        params.put("merch_addr", payment.getMerchAddress());
+        params.put("coin", payment.getCoin());
+        params.put("api_key", payment.getMerchantApiKey());
         params.put("testnet", String.valueOf(this.isTestnet));
 
         if (!TextUtils.isEmpty(payment.getCallback()))
         {
             params.put("callback", payment.getCallback());
+        }
+
+        if (!TextUtils.isEmpty(payment.getReturnUrl()))
+        {
+            params.put("return_url", payment.getReturnUrl());
         }
 
         if (!TextUtils.isEmpty(payment.getAffiliateId()))
@@ -69,21 +75,21 @@ public class SetGetGo implements ISetGetGo
     }
 
     /**
-     * Gets a payment status by payment address.
+     * Gets a payment status by payment identifier.
      *
-     * @param paymentAddress The payment address.
+     * @param paymentId The payment identifier.
      * @return The JSON representation of the transaction payment.
      */
     @Override
-    public JSONObject GetPayment(String paymentAddress) throws Exception
+    public JSONObject GetPayment(String paymentId) throws Exception
     {
-        if (TextUtils.isEmpty(paymentAddress))
+        if (TextUtils.isEmpty(paymentId))
         {
-            throw new IllegalArgumentException("Invalid payment address");
+            throw new IllegalArgumentException("Invalid payment identifier");
         }
 
         Hashtable<String,String> params = new Hashtable<>();
-        params.put("payment_addr", paymentAddress);
+        params.put("payment_id", paymentId);
         params.put("testnet", String.valueOf(this.isTestnet));
 
         return Get(baseUrl + "/get-payment-status", params);

@@ -1,7 +1,7 @@
-package com.setgetgo.android.sdk.Models;
+package io.paybyte.android.sdk.models;
 
 /**
- * Model class which defines a transaction payment.
+ * Model class which defines a PayByte transaction payment.
  */
 public class Payment
 {
@@ -10,15 +10,25 @@ public class Payment
      */
     private double amount;
 
-    /**
-     * The merchant address.
+     /**
+     * The coin.
      */
-    private String merchAddress;
+    private String coin;
+
+    /**
+     * The merchant API key.
+     */
+    private String apiKey;
 
     /**
      * The callback.
      */
     private String callback;
+
+     /**
+     * The return URL.
+     */
+    private String returnUrl;
 
     /**
      * The affiliate identifier.
@@ -43,22 +53,40 @@ public class Payment
         this.amount = amount;
     }
 
-    /**
-     * Gets the merchant address.
+     /**
+     * Gets the coin.
      * @return
      */
-    public String getMerchAddress()
+    public double getCoin()
     {
-        return merchAddress;
+        return coin;
     }
 
     /**
-     * Sets the merchant address.
+     * Sets the coin.
      * @return
      */
-    public void setMerchAddress(String merchAddress)
+    public void setCoin(String coin)
     {
-        this.merchAddress = merchAddress;
+        this.coin = coin;
+    }
+
+    /**
+     * Gets the merchant API key.
+     * @return
+     */
+    public String getMerchantApiKey()
+    {
+        return apiKey;
+    }
+
+    /**
+     * Sets the merchant API key.
+     * @return
+     */
+    public void setMerchantApiKey(String apiKey)
+    {
+        this.apiKey = apiKey;
     }
 
     /**
@@ -70,7 +98,6 @@ public class Payment
         return callback;
     }
 
-
     /**
      * Sets the callback URL.
      * @return
@@ -78,6 +105,24 @@ public class Payment
     public void setCallback(String callback)
     {
         this.callback = callback;
+    }
+
+      /**
+     * Gets the return URL.
+     * @return
+     */
+    public String getReturnUrl()
+    {
+        return returnUrl;
+    }
+
+    /**
+     * Sets the return URL.
+     * @return
+     */
+    public void setReturnUrl(String url)
+    {
+        this.returnUrl = url;
     }
 
     /**
