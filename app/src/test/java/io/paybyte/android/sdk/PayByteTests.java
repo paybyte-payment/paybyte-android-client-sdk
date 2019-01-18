@@ -24,7 +24,7 @@ public class PayByteTests
 
         try
         {
-            JSONObject resp = sgg.CreatePayment(payment);
+            JSONObject resp = paybyte.CreatePayment(payment);
 
             Assert.assertEquals(resp.getJSONObject("transaction").getDouble("amount"), payment.getAmount());
             Assert.assertTrue(!TextUtils.isEmpty(resp.getJSONObject("transaction").getString("payment-address")));
@@ -52,10 +52,10 @@ public class PayByteTests
         try
         {
             // create a test transaction
-            JSONObject resp = sgg.CreatePayment(payment);
+            JSONObject resp = paybyte.CreatePayment(payment);
 
             // test the get payment against the transaction just created.
-            JSONObject paymentStatus = sgg.GetPayment(resp.getJSONObject("transaction").getString("payment-id"));
+            JSONObject paymentStatus = paybyte.GetPayment(resp.getJSONObject("transaction").getString("payment-id"));
 
             double amountValue = BigDecimal.valueOf(paymentStatus.getJSONObject("transaction").getDouble("amount")).doubleValue();
 
